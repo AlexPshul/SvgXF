@@ -57,17 +57,15 @@ namespace SvgXF
 
             if (string.IsNullOrEmpty(ResourceId))
                 return;
-
-            SKImageInfo info = args.Info;
-
-            SKSvg svg = new SKSvg();
+            
             Stream stream = GetType().Assembly.GetManifestResourceStream(ResourceId);
+            SKSvg svg = new SKSvg();
             svg.Load(stream);
-
-            SKRect bounds = svg.ViewBox;
-
+            
+            SKImageInfo info = args.Info;
             canvas.Translate(info.Width / 2f, info.Height / 2f);
 
+            SKRect bounds = svg.ViewBox;
             float ratio = bounds.Width > bounds.Height
                 ? info.Width / bounds.Width
                 : info.Height / bounds.Height;

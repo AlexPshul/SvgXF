@@ -5,7 +5,7 @@
              x:Class="SvgXF.MainPage">
 
     <StackLayout>
-        <Label Text="Here is a cat" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="Here is a cat" VerticalOptions="Center" HorizontalOptions="Center" FontSize="30"/>
         <svg:Icon ResourceId="SvgXF.Cat.svg" WidthRequest="300" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center"/>
     </StackLayout>
 </ContentPage>
