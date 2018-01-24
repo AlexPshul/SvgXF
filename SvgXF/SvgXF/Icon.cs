@@ -18,13 +18,13 @@ namespace SvgXF
 
         #region ResourceId
 
-        public static readonly BindableProperty IconFilePathProperty = BindableProperty.Create(
+        public static readonly BindableProperty ResourceIdProperty = BindableProperty.Create(
             nameof(ResourceId), typeof(string), typeof(Icon), default(string), propertyChanged: RedrawCanvas);
 
         public string ResourceId
         {
-            get => (string)GetValue(IconFilePathProperty);
-            set => SetValue(IconFilePathProperty, value);
+            get => (string)GetValue(ResourceIdProperty);
+            set => SetValue(ResourceIdProperty, value);
         }
 
         #endregion
@@ -46,10 +46,8 @@ namespace SvgXF
 
         private static void RedrawCanvas(BindableObject bindable, object oldvalue, object newvalue)
         {
-            if (!(bindable is Icon svgIcon))
-                return;
-
-            svgIcon._canvasView.InvalidateSurface();
+            Icon svgIcon = bindable as Icon;
+            svgIcon?._canvasView.InvalidateSurface();
         }
 
         private void CanvasViewOnPaintSurface(object sender, SKPaintSurfaceEventArgs args)
