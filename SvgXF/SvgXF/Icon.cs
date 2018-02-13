@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -67,9 +68,10 @@ namespace SvgXF
                 canvas.Translate(info.Width / 2f, info.Height / 2f);
 
                 SKRect bounds = svg.ViewBox;
-                float ratio = bounds.Width > bounds.Height
-                    ? info.Width / bounds.Width
-                    : info.Height / bounds.Height;
+                float xRatio = info.Width / bounds.Width;
+                float yRatio = info.Height / bounds.Height;
+
+                float ratio = Math.Min(xRatio, yRatio);
 
                 canvas.Scale(ratio);
                 canvas.Translate(-bounds.MidX, -bounds.MidY);
