@@ -37,6 +37,8 @@ namespace SvgXF
         public Icon()
         {
             Padding = new Thickness(0);
+            BackgroundColor = Color.Transparent;
+            HasShadow = false;
             Content = _canvasView;
             _canvasView.PaintSurface += CanvasViewOnPaintSurface;
         }
