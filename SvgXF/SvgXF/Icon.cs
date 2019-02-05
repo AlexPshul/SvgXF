@@ -39,6 +39,7 @@ namespace SvgXF
             Padding = new Thickness(0);
             BackgroundColor = Color.Transparent;
             HasShadow = false;
+            CornerRadius = 0.0f;
             Content = _canvasView;
             _canvasView.PaintSurface += CanvasViewOnPaintSurface;
         }
