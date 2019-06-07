@@ -30,6 +30,19 @@ namespace SvgXF
 
         #endregion
 
+        #region Color
+
+        public static readonly BindableProperty ColorProperty = BindableProperty.Create(
+            nameof(Color), typeof(Color), typeof(Icon), Color.Black, propertyChanged: RedrawCanvas);
+
+        public Color Color
+        {
+            get => (Color)GetValue(ColorProperty);
+            set => SetValue(ColorProperty, Color);
+        }
+
+        #endregion
+
         #endregion
 
         #region Constructor
@@ -78,7 +91,15 @@ namespace SvgXF
                 canvas.Scale(ratio);
                 canvas.Translate(-bounds.MidX, -bounds.MidY);
 
-                canvas.DrawPicture(svg.Picture);
+                var paint = new SKPaint()
+                {
+                    ColorFilter = SKColorFilter.CreateBlendMode(
+                        this.Color.ToSKColor(),
+                        SKBlendMode.SrcIn
+                    )
+                };
+                
+                canvas.DrawPicture(svg.Picture,paint);
             }
         }
 
